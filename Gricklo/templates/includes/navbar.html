@@ -1,0 +1,77 @@
+<header class="">
+    <div class="header-area">
+        <div class="main-header">
+            <div class="container">
+                <div class="row d-flex">
+                    <div class="col-9 d-flex align-items-center">
+                        <div class="logo">
+                            <a href="{{ url_for('index') }}" class="header-logo">
+                                <img src="{{ url_for('static',filename='img/logo.png') }}" alt="logo">
+                            </a>
+                        </div>
+
+                        <form action="" class="form-box">
+                            <input type="text" name="Search" placeholder="Search">
+                            <div class="search-icon">
+                                <a href=""><i class="fas fa-search"></i></a>
+
+                            </div>
+
+
+                        </form>
+                        <div class="main-menu">
+
+                            <nav>
+                                <ul class="nav d-flex">
+                                    <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+                                    <li>
+                                        <a href="{{ url_for('listing') }}" class="nav-link">Listing
+                                            <i class="fas fa-angle-down"></i>
+                                        </a>
+                                        <ul>
+                                            <li><a href="{{ url_for('listing') }}">Listing</a></li>
+                                            <li><a href="">Listing Details</a></li>
+                                        </ul>
+
+                                    </li>
+                                    <li><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+                                    <li><a href="{{ url_for('blog') }}" class="nav-link">Blog</a>
+                                        <ul>
+                                            <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                                            <li><a href="{{ url_for('blogdetails') }}">Blog Details</a></li>
+                                            <li><a href="">Element</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+                                </ul>
+                            </nav>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="col-3 ">
+
+                        <div class="nav-button">
+                            <a href="{{ url_for('login') }}" class="header-btn mr-15">Sign In</a>
+                            <a href="" class="btn header-btn2">Add Listing</a>
+                            <div class="burger ml-10">
+                                <div class="line1"></div>
+                                <div class="line2"></div>
+                                <div class="line3"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+</header>
