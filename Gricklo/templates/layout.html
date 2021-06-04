@@ -13,10 +13,9 @@
     <div id="footer">
       {% block footer %}
       {% include "includes/footer.html"%}
-      &copy; Copyright 2010 by <a href="http://domain.invalid/">you</a>.
       {% endblock %}
     </div>
 
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
 </html>

@@ -62,11 +62,12 @@
                     </div>
                 </div>
                 <div class="row">
+                    {% for city in citys %}
                     <div class="col-2 mr-20">
                         <div class="location text-center mb-35">
                             <div class="location-img">
                                 <div class="border"></div>
-                                <img src="img/topDesti1.png" alt="New York">
+                                <img src="/static/uploads/{{city.image}}" alt="New York">
                                 <div class="location-details">
 
                                     <a href="#">
@@ -78,110 +79,12 @@
 
                             </div>
                             <h3>
-                                <a href="#" class="location-link">New York</a>
+                                <a href="#" class="location-link">{{city.title}}</a>
                             </h3>
                         </div>
                     </div>
-                    <div class="col-2 mr-20">
-                        <div class="location text-center mb-35">
-                            <div class="location-img">
-                                <div class="border"></div>
-                                <img src="img/topDesti2.png" alt="Toronto">
-                                <div class="location-details">
-
-                                    <a href="#">
-                                            Explore
-                                            <i class="fas fa-angle-right"></i>
-                                        </a>
-
-                                </div>
-
-                            </div>
-                            <h3>
-                                <a href="#" class="location-link">Toronto</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-2 mr-20">
-                        <div class="location text-center mb-35">
-                            <div class="location-img">
-                                <div class="border"></div>
-                                <img src="img/topDesti3.png" alt="Thailand">
-                                <div class="location-details">
-
-                                    <a href="#">
-                                            Explore
-                                            <i class="fas fa-angle-right"></i>
-                                        </a>
-
-                                </div>
-
-                            </div>
-                            <h3>
-                                <a href="#" class="location-link">Thailand</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-2 mr-20">
-                        <div class="location text-center mb-35">
-                            <div class="location-img">
-                                <div class="border"></div>
-                                <img src="img/topDesti4.png" alt="Paris">
-                                <div class="location-details">
-
-                                    <a href="#">
-                                            Explore
-                                            <i class="fas fa-angle-right"></i>
-                                        </a>
-
-                                </div>
-
-                            </div>
-                            <h3>
-                                <a href="#" class="location-link">Paris</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-2 mr-20">
-                        <div class="location text-center mb-35">
-                            <div class="location-img">
-                                <div class="border"></div>
-                                <img src="img/topDesti5.png" alt="Dhaka">
-                                <div class="location-details">
-
-                                    <a href="#">
-                                            Explore
-                                            <i class="fas fa-angle-right"></i>
-                                        </a>
-
-                                </div>
-
-                            </div>
-                            <h3>
-                                <a href="#" class="location-link">Dhaka</a>
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="location text-center mb-35">
-                            <div class="location-img">
-                                <div class="border"></div>
-                                <img src="img/topDesti6.png" alt="Rome">
-                                <div class="location-details">
-
-                                    <a href="#">
-                                            Explore
-                                            <i class="fas fa-angle-right"></i>
-                                        </a>
-
-                                </div>
-
-                            </div>
-                            <h3>
-                                <a href="#" class="location-link">Rome</a>
-                            </h3>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    
 
                 </div>
 
@@ -202,13 +105,13 @@
 
                     <div class="col-4">
                         <div class="cart positon-r mb-15 mr-15">
-                            <img src="img/home-blog1.jpg" alt="">
+                            <img src="{{ url_for('static', filename='img/home-blog1.jpg') }}" alt="">
                             <div class="cart-tittle ">
                                 <h4>Restaurant & Bar</h4>
                             </div>
                         </div>
                         <div class="cart positon-r mr-15">
-                            <img src="img/home-blog2.jpg" alt="">
+                            <img src="{{ url_for('static', filename='img/home-blog2.jpg') }}" alt="">
                             <div class="cart-tittle">
                                 <h4>Outdoor</h4>
                             </div>
@@ -217,7 +120,7 @@
                     </div>
                     <div class="col-4">
                         <div class="cart positon-r mr-15">
-                            <img src="img/home-blog3.jpg" alt="">
+                            <img src="{{ url_for('static', filename='img/home-blog3.jpg') }}" alt="">
                             <div class="cart-tittle">
                                 <h4>Shopping Center</h4>
                                 <p>Discover & connect with great local businesses in New York</p>
@@ -227,13 +130,13 @@
                     <div class="col-4">
 
                         <div class="cart positon-r mb-15 mr-15">
-                            <img src="img/home-blog4.jpg" alt="">
+                            <img src="{{ url_for('static', filename='img/home-blog4.jpg') }}" alt="">
                             <div class="cart-tittle ">
                                 <h4>Restaurant & Bar</h4>
                             </div>
                         </div>
                         <div class="cart positon-r mr-15">
-                            <img src="img/home-blog5.jpg" alt="">
+                            <img src="{{ url_for('static', filename='img/home-blog5.jpg') }}" alt="">
                             <div class="cart-tittle">
                                 <h4>Outdoor</h4>
                             </div>
@@ -265,11 +168,11 @@
                     <div class="slider-block">
 
                         <div class="slider-line d-flex">
-
+                            {% for restaurant in restaurants %}
                             <div class="properties-card positon-r">
                                 <div class="properties-img">
                                     <a href="">
-                                        <img src="img/directory1.jpg" alt="">
+                                        <img src="static/uploads/{{restaurant.image}}" alt="">
                                     </a>
                                     <div class="img-text">
                                         <span>Closed</span>
@@ -291,18 +194,18 @@
                                 </div>
                                 <div class="properties-tittle ml-15 ">
                                     <h3>
-                                        <a href="#">Gloria Fast Food Restaurant</a>
-                                        <img src="img/varified.png " alt="">
+                                        <a href="#">{{restaurant.title}}</a>
+                                        <img src="{{ url_for('static',filename='img/varified.png ') }}" alt="">
                                     </h3>
                                     <p>
                                         <i class="fas fa-map-marker-alt blue">
-                                        75 Prince Street, green road, NY, USAk
+                                        {{restaurant.location}}
                                 </i>
                                     </p>
                                 </div>
                                 <div class="properties-footer d-flex">
                                     <div class="restaurant-name">
-                                        <img src="img/restaurant-icon.svg" alt="">
+                                        <img src="{{ url_for('static',filename='img/restaurant-icon.svg') }}" alt="">
                                     </div>
                                     <h3>
                                         <a href="#">Food & Restaurant</a>
@@ -317,387 +220,7 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="properties-card positon-r">
-                                <div class="properties-img">
-                                    <a href="">
-                                        <img src="img/directory4.jpg" alt="">
-                                    </a>
-                                    <div class="img-text">
-                                        <span>Closed</span>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="far fa-heart"></i>
-                                    </div>
-                                    <div class="ratting">
-                                        <ul>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><span> - 4.90 (230 Reiew)</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="properties-tittle ml-15 ">
-                                    <h3>
-                                        <a href="#">Gloria Fast Food Restaurant</a>
-                                        <img src="img/varified.png " alt="">
-                                    </h3>
-                                    <p>
-                                        <i class="fas fa-map-marker-alt blue">
-                                        75 Prince Street, green road, NY, USAk
-                                </i>
-                                    </p>
-                                </div>
-                                <div class="properties-footer d-flex">
-                                    <div class="restaurant-name">
-                                        <img src="img/restaurant-icon.svg" alt="">
-                                    </div>
-                                    <h3>
-                                        <a href="#">Food & Restaurant</a>
-                                    </h3>
-                                    <div class="contact">
-                                        <ul>
-                                            <li><a href=""><i class="fas fa-phone-alt mr-15"></i></a></li>
-                                            <li>
-                                                <a href=""><i class="far fa-envelope mr-15"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="properties-card positon-r">
-                                <div class="properties-img">
-                                    <a href="">
-                                        <img src="img/directory2.jpg" alt="">
-                                    </a>
-                                    <div class="img-text">
-                                        <span>Closed</span>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="far fa-heart"></i>
-                                    </div>
-                                    <div class="ratting">
-                                        <ul>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><span> - 4.90 (230 Reiew)</span></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="properties-tittle ml-15 ">
-                                    <h3>
-                                        <a href="#">Gloria Fast Food Restaurant</a>
-                                        <img src="img/varified.png " alt="">
-                                    </h3>
-                                    <p>
-                                        <i class="fas fa-map-marker-alt blue">
-                                        75 Prince Street, green road, NY, USAk
-                                </i>
-                                    </p>
-                                </div>
-                                <div class="properties-footer d-flex">
-                                    <div class="restaurant-name">
-                                        <img src="img/restaurant-icon.svg" alt="">
-                                    </div>
-                                    <h3>
-                                        <a href="#">Food & Restaurant</a>
-                                    </h3>
-                                    <div class="contact">
-                                        <ul>
-                                            <li><a href=""><i class="fas fa-phone-alt mr-15"></i></a></li>
-                                            <li>
-                                                <a href=""><i class="far fa-envelope mr-15"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="properties-card positon-r">
-                                <div class="properties-img">
-                                    <a href="">
-                                        <img src="img/directory3.jpg" alt="">
-                                    </a>
-                                    <div class="img-text">
-                                        <span>Closed</span>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="far fa-heart"></i>
-                                    </div>
-                                    <div class="ratting">
-                                        <ul>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><span> - 4.90 (230 Reiew)</span></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="properties-tittle ml-15 ">
-                                    <h3>
-                                        <a href="#">Gloria Fast Food Restaurant</a>
-                                        <img src="img/varified.png " alt="">
-                                    </h3>
-                                    <p>
-                                        <i class="fas fa-map-marker-alt blue">
-                                        75 Prince Street, green road, NY, USAk
-                                </i>
-                                    </p>
-                                </div>
-                                <div class="properties-footer d-flex">
-                                    <div class="restaurant-name">
-                                        <img src="img/restaurant-icon.svg" alt="">
-                                    </div>
-                                    <h3>
-                                        <a href="#">Food & Restaurant</a>
-                                    </h3>
-                                    <div class="contact">
-                                        <ul>
-                                            <li><a href=""><i class="fas fa-phone-alt mr-15"></i></a></li>
-                                            <li>
-                                                <a href=""><i class="far fa-envelope mr-15"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="properties-card positon-r">
-                                <div class="properties-img">
-                                    <a href="">
-                                        <img src="img/directory4.jpg" alt="">
-                                    </a>
-                                    <div class="img-text">
-                                        <span>Closed</span>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="far fa-heart"></i>
-                                    </div>
-                                    <div class="ratting">
-                                        <ul>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><span> - 4.90 (230 Reiew)</span></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="properties-tittle ml-15 ">
-                                    <h3>
-                                        <a href="#">Gloria Fast Food Restaurant</a>
-                                        <img src="img/varified.png " alt="">
-                                    </h3>
-                                    <p>
-                                        <i class="fas fa-map-marker-alt blue">
-                                        75 Prince Street, green road, NY, USAk
-                                </i>
-                                    </p>
-                                </div>
-                                <div class="properties-footer d-flex">
-                                    <div class="restaurant-name">
-                                        <img src="img/restaurant-icon.svg" alt="">
-                                    </div>
-                                    <h3>
-                                        <a href="#">Food & Restaurant</a>
-                                    </h3>
-                                    <div class="contact">
-                                        <ul>
-                                            <li><a href=""><i class="fas fa-phone-alt mr-15"></i></a></li>
-                                            <li>
-                                                <a href=""><i class="far fa-envelope mr-15"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="properties-card positon-r">
-                                <div class="properties-img">
-                                    <a href="">
-                                        <img src="img/directory1.jpg" alt="">
-                                    </a>
-                                    <div class="img-text">
-                                        <span>Closed</span>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="far fa-heart"></i>
-                                    </div>
-                                    <div class="ratting">
-                                        <ul>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><span> - 4.90 (230 Reiew)</span></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="properties-tittle ml-15 ">
-                                    <h3>
-                                        <a href="#">Gloria Fast Food Restaurant</a>
-                                        <img src="img/varified.png " alt="">
-                                    </h3>
-                                    <p>
-                                        <i class="fas fa-map-marker-alt blue">
-                                        75 Prince Street, green road, NY, USAk
-                                </i>
-                                    </p>
-                                </div>
-                                <div class="properties-footer d-flex">
-                                    <div class="restaurant-name">
-                                        <img src="img/restaurant-icon.svg" alt="">
-                                    </div>
-                                    <h3>
-                                        <a href="#">Food & Restaurant</a>
-                                    </h3>
-                                    <div class="contact">
-                                        <ul>
-                                            <li><a href=""><i class="fas fa-phone-alt mr-15"></i></a></li>
-                                            <li>
-                                                <a href=""><i class="far fa-envelope mr-15"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="properties-card positon-r">
-                                <div class="properties-img">
-                                    <a href="">
-                                        <img src="img/directory3.jpg" alt="">
-                                    </a>
-                                    <div class="img-text">
-                                        <span>Closed</span>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="far fa-heart"></i>
-                                    </div>
-                                    <div class="ratting">
-                                        <ul>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><span> - 4.90 (230 Reiew)</span></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="properties-tittle ml-15 ">
-                                    <h3>
-                                        <a href="#">Gloria Fast Food Restaurant</a>
-                                        <img src="img/varified.png " alt="">
-                                    </h3>
-                                    <p>
-                                        <i class="fas fa-map-marker-alt blue">
-                                        75 Prince Street, green road, NY, USAk
-                                </i>
-                                    </p>
-                                </div>
-                                <div class="properties-footer d-flex">
-                                    <div class="restaurant-name">
-                                        <img src="img/restaurant-icon.svg" alt="">
-                                    </div>
-                                    <h3>
-                                        <a href="#">Food & Restaurant</a>
-                                    </h3>
-                                    <div class="contact">
-                                        <ul>
-                                            <li><a href=""><i class="fas fa-phone-alt mr-15"></i></a></li>
-                                            <li>
-                                                <a href=""><i class="far fa-envelope mr-15"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="properties-card positon-r">
-                                <div class="properties-img">
-                                    <a href="">
-                                        <img src="img/directory2.jpg" alt="">
-                                    </a>
-                                    <div class="img-text">
-                                        <span>Closed</span>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="far fa-heart"></i>
-                                    </div>
-                                    <div class="ratting">
-                                        <ul>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><i class="fas fa-star"></i></li>
-                                            <li><span> - 4.90 (230 Reiew)</span></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-
-                                <div class="properties-tittle ml-15 ">
-                                    <h3>
-                                        <a href="#">Gloria Fast Food Restaurant</a>
-                                        <img src="img/varified.png " alt="">
-                                    </h3>
-                                    <p>
-                                        <i class="fas fa-map-marker-alt blue">
-                                        75 Prince Street, green road, NY, USAk
-                                </i>
-                                    </p>
-                                </div>
-                                <div class="properties-footer d-flex">
-                                    <div class="restaurant-name">
-                                        <img src="img/restaurant-icon.svg" alt="">
-                                    </div>
-                                    <h3>
-                                        <a href="#">Food & Restaurant</a>
-                                    </h3>
-                                    <div class="contact">
-                                        <ul>
-                                            <li><a href=""><i class="fas fa-phone-alt mr-15"></i></a></li>
-                                            <li>
-                                                <a href=""><i class="far fa-envelope mr-15"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
+                            {% endfor %}
 
                         </div>
 
@@ -744,7 +267,7 @@
                     <div class="col-4">
                         <div class="single-services text-center mb-35">
                             <div class="services-icon">
-                                <img src="img/services1.svg" alt="">
+                                <img src="{{ url_for('static', filename='img/services1.svg') }}" alt="">
                             </div>
                             <div class="services-cap">
                                 <h5><a href="">Find Businesses</a></h5>
@@ -755,7 +278,7 @@
                     <div class="col-4">
                         <div class="single-services text-center mb-35">
                             <div class="services-icon">
-                                <img src="img/services2.svg" alt="">
+                                <img src="{{ url_for('static', filename='img/services2.svg') }}" alt="">
                             </div>
                             <div class="services-cap">
                                 <h5><a href="">Rewiew Listings</a></h5>
@@ -766,7 +289,7 @@
                     <div class="col-4">
                         <div class="single-services text-center mb-35">
                             <div class="services-icon">
-                                <img src="img/services3.svg" alt="">
+                                <img src="{{ url_for('static', filename='img/services3.svg') }}" alt="">
                             </div>
                             <div class="services-cap">
                                 <h5><a href="">Make a Reservation</a></h5>
@@ -782,9 +305,9 @@
                 <div class="row">
 
                     <div class="video-area positon-r">
-                        <img src="img/video-bg.jpg" alt="">
+                        <img src="../static/img/video-bg.jpg" alt="">
                         <a href="" class="video-icon">
-                            <img src="img/play-butto.svg" alt="">
+                            <img src="../static/img/play-butto.svg" alt="">
                         </a>
                     </div>
 
@@ -795,7 +318,7 @@
                                 <h2>People talking about</h2>
                                 <p class="video-about-text">"Discover; connect with great local businesses in your local neighborhood like dentists, hair stylists and more unde omnis iste natus error sit voluptatem.</p>
                                 <div class="video-about-reivew d-flex align-items-center">
-                                    <img src="img/founder-img.png" alt="">
+                                    <img src="../static/img/founder-img.png" alt="">
                                     <div>
                                         <span>Dan delion</span>
 
@@ -808,7 +331,7 @@
                                 <h2>People talking about</h2>
                                 <p class="video-about-text">"Discover; connect with great local businesses in your local neighborhood like dentists, hair stylists and more unde omnis iste natus error sit voluptatem.</p>
                                 <div class="video-about-reivew d-flex align-items-center">
-                                    <img src="img/founder-img.png" alt="">
+                                    <img src="../static/img/founder-img.png" alt="">
                                     <div>
                                         <span>Dan delion</span>
 
@@ -821,7 +344,7 @@
                                 <h2>People talking about</h2>
                                 <p class="video-about-text">"Discover; connect with great local businesses in your local neighborhood like dentists, hair stylists and more unde omnis iste natus error sit voluptatem.</p>
                                 <div class="video-about-reivew d-flex align-items-center">
-                                    <img src="img/founder-img.png" alt="">
+                                    <img src="../static/img/founder-img.png" alt="">
                                     <div>
                                         <span>Dan delion</span>
 
