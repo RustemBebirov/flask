@@ -1,0 +1,71 @@
+.bg-contact {
+    background-image: url(../img/h2_hero1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    z-index: 0;
+}
+
+.contact-text {
+    padding-top: 80px;
+}
+
+.contact-text h2 {
+    color: #fff;
+    font-size: 60px;
+    font-weight: 600;
+}
+
+.contact-tittle {
+    font-size: 27px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.contact-info-icon i {
+    color: #8f9195;
+    font-size: 27px;
+}
+
+.form-control {
+    border: 1px solid #e5e6e9;
+    border-radius: 0px;
+    height: 48px;
+    padding-left: 18px;
+    font-size: 13px;
+    background: transparent;
+}
+
+.form-contact textarea {
+    border-radius: 0px;
+    height: 100% !important;
+}
+
+.form-control {
+    border: 1px solid #e5e6e9;
+    border-radius: 0;
+    height: 48px;
+    padding-left: 18px;
+    font-size: 13px;
+    background: transparent;
+    display: block;
+    width: 100%;
+    outline: none;
+}
+
+.boxed-btn {
+    background: #fff;
+    color: #4DB7FE !important;
+    display: inline-block;
+    padding: 18px 44px;
+    font-family: "Work Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    border: 0;
+    border: 1px solid #4DB7FE;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #4DB7FE;
+    text-transform: uppercase;
+    cursor: pointer;
+}

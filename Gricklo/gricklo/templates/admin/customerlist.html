@@ -1,0 +1,31 @@
+{% extends "admin/base.html"%}
+
+{% block content%}
+<h2>Customer</h2>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NAME</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">USERNAME</th>
+        <th scope="col">PHONE</th>
+        <th scope="col">IMAGE</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+        {% for customer in customers %}
+        <tr>
+            <th scope="row">{{customer.id}}</th>
+            <td>{{customer.name}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.username}}</td>
+            <td>{{customer.phone}}</td>
+            <td><img src="/static/uploads/{{customer.image}}" alt=""></td>
+          </tr>
+        {% endfor %}
+      
+    </tbody>
+  </table>   
+{% endblock %}

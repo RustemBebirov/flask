@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gricklo</title>
+</head>
+
+<body>
+    {% extends "layout.html" %}
+    {% block content %}
+    <main>
+        <div class="slider-area hero-bg1 ">
+            <div class="single-slinder hero-overly slinder-height1 d-flex align-items-center">
+                <div class="container">
+                    <div class="row d-flex justify-content">
+                        <div class="">
+                            <div class="hero-caption pt-10">
+                                <h1 class="anime">Listing made easy.</h1>
+                                <p class="anime">Explore vacation rentals, bar restaurants and experiences . Find amazing places to visit</p>
+                            </div>
+                            <form action="#" class="search-box mb-45">
+                                <div class="input-form">
+                                    <input type="text" placeholder="Ex: Food, Service,Hotel,Shopping">
+                                    <span>What?</span>
+                                </div>
+                                <div class="input-form">
+                                    <input type="text" placeholder="Your City...">
+                                    <span>Where?</span>
+                                </div>
+                                <div class="search-form">
+                                    <a href="">
+                                        <i class="fas fa-search"></i> Search
+                                    </a>
+                                </div>
+                            </form>
+                            <div class="category-items">
+
+                                <ul class="text-center">
+                                    <li><a href="#">Restaurant</a></li>
+                                    <li><a href="#" class="active">Home</a></li>
+                                    <li><a href="#">Party</a></li>
+                                    <li><a href="#">Shopping</a></li>
+                                    <li><a href="#">Hotel</a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="section-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-tittle text-center mb-45">
+                            <h2>Top Destination</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for city in citys %}
+                    <div class="col-2 mr-20">
+                        <div class="location text-center mb-35">
+                            <div class="location-img">
+                                <div class="border"></div>
+                                <img src="/static/uploads/{{city.image}}" alt="New York">
+                                <div class="location-details">
+
+                                    <a href="#">
+                                            Explore
+                                            <i class="fas fa-angle-right"></i>
+                                        </a>
+
+                                </div>
+
+                            </div>
+                            <h3>
+                                <a href="#" class="location-link">{{city.title}}</a>
+                            </h3>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+
+                </div>
+
+            </div>
+
+        </section>
+        <section class="section-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-2-tittle mb-80 text-center">
+                            <h2>Things Are you Interested In</h2>
+                            <p>Things you are looking for today</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-4">
+                        <div class="cart positon-r mb-15 mr-15">
+                            <img src="{{ url_for('static', filename='img/home-blog1.jpg') }}" alt="">
+                            <div class="cart-tittle ">
+                                <h4>Restaurant & Bar</h4>
+                            </div>
+                        </div>
+                        <div class="cart positon-r mr-15">
+                            <img src="{{ url_for('static', filename='img/home-blog2.jpg') }}" alt="">
+                            <div class="cart-tittle">
+                                <h4>Outdoor</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-4">
+                        <div class="cart positon-r mr-15">
+                            <img src="{{ url_for('static', filename='img/home-blog3.jpg') }}" alt="">
+                            <div class="cart-tittle">
+                                <h4>Shopping Center</h4>
+                                <p>Discover & connect with great local businesses in New York</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+
+                        <div class="cart positon-r mb-15 mr-15">
+                            <img src="{{ url_for('static', filename='img/home-blog4.jpg') }}" alt="">
+                            <div class="cart-tittle ">
+                                <h4>Restaurant & Bar</h4>
+                            </div>
+                        </div>
+                        <div class="cart positon-r mr-15">
+                            <img src="{{ url_for('static', filename='img/home-blog5.jpg') }}" alt="">
+                            <div class="cart-tittle">
+                                <h4>Outdoor</h4>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-3-tittle text-center mb-35">
+                        <h2>Popular Things To do</h2>
+                        <p>Popular Exclusive Listings In Our Directory</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="slider positon-r">
+
+                <button type="button" class="prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                <div class="slider-container">
+                    <div class="slider-block">
+
+                        <div class="slider-line d-flex">
+                            {% for restaurant in restaurants %}
+                            <div class="properties-card positon-r">
+                                <div class="properties-img">
+                                    <a href="">
+                                        <img src="static/uploads/{{restaurant.image}}" alt="">
+                                    </a>
+                                    <div class="img-text">
+                                        <span>Closed</span>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="far fa-heart"></i>
+                                    </div>
+                                    <div class="ratting">
+                                        <ul>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><i class="fas fa-star"></i></li>
+                                            <li><span> - 4.90 (230 Reiew)</span></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="properties-tittle ml-15 ">
+                                    <h3>
+                                        <a href="#">{{restaurant.title}}</a>
+                                        <img src="{{ url_for('static',filename='img/varified.png ') }}" alt="">
+                                    </h3>
+                                    <p>
+                                        <i class="fas fa-map-marker-alt blue">
+                                        {{restaurant.location}}
+                                </i>
+                                    </p>
+                                </div>
+                                <div class="properties-footer d-flex">
+                                    <div class="restaurant-name">
+                                        <img src="{{ url_for('static',filename='img/restaurant-icon.svg') }}" alt="">
+                                    </div>
+                                    <h3>
+                                        <a href="#">Food & Restaurant</a>
+                                    </h3>
+                                    <div class="contact">
+                                        <ul>
+                                            <li><a href=""><i class="fas fa-phone-alt mr-15"></i></a></li>
+                                            <li>
+                                                <a href=""><i class="far fa-envelope mr-15"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+
+                <button type="button" class="next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+
+            </div>
+            <div class="container">
+                <div class="row justify-content">
+                    <div class="col-8">
+                        <div class="wantToWork-area mt-25 w-padding2 mb-80">
+                            <div class="wantToWork-tittle">
+                                <h2>Do you want to find more?</h2>
+                                <p>10,563 listing for you on our list.</p>
+                            </div>
+
+                            <a href="#" class="btn">Explore More</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-4">
+            <div class="container">
+                <div class="row justify-content">
+                    <div class="col-7">
+                        <div class="section-4-tittle text-center mb-80">
+                            <h2>How it Work?</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                        <div class="single-services text-center mb-35">
+                            <div class="services-icon">
+                                <img src="{{ url_for('static', filename='img/services1.svg') }}" alt="">
+                            </div>
+                            <div class="services-cap">
+                                <h5><a href="">Find Businesses</a></h5>
+                                <p>Discover & connect with great local businesses in your local neighborhood like dentists, hair stylists and more.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="single-services text-center mb-35">
+                            <div class="services-icon">
+                                <img src="{{ url_for('static', filename='img/services2.svg') }}" alt="">
+                            </div>
+                            <div class="services-cap">
+                                <h5><a href="">Rewiew Listings</a></h5>
+                                <p>Discover & connect with great local businesses in your local neighborhood like dentists, hair stylists and more.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="single-services text-center mb-35">
+                            <div class="services-icon">
+                                <img src="{{ url_for('static', filename='img/services3.svg') }}" alt="">
+                            </div>
+                            <div class="services-cap">
+                                <h5><a href="">Make a Reservation</a></h5>
+                                <p>Discover & connect with great local businesses in your local neighborhood like dentists, hair stylists and more.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-5 mt-100 mb-80">
+            <div class="container">
+                <div class="row">
+
+                    <div class="video-area positon-r">
+                        <img src="../static/img/video-bg.jpg" alt="">
+                        <a href="" class="video-icon">
+                            <img src="../static/img/play-butto.svg" alt="">
+                        </a>
+                    </div>
+
+
+                    <div class="slider-block-2">
+                        <div class="slider-line-2 d-flex">
+                            <div class="video-about">
+                                <h2>People talking about</h2>
+                                <p class="video-about-text">"Discover; connect with great local businesses in your local neighborhood like dentists, hair stylists and more unde omnis iste natus error sit voluptatem.</p>
+                                <div class="video-about-reivew d-flex align-items-center">
+                                    <img src="../static/img/founder-img.png" alt="">
+                                    <div>
+                                        <span>Dan delion</span>
+
+                                        <p class="user-info">UI & UX Designer at Colorlib</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="video-about">
+                                <h2>People talking about</h2>
+                                <p class="video-about-text">"Discover; connect with great local businesses in your local neighborhood like dentists, hair stylists and more unde omnis iste natus error sit voluptatem.</p>
+                                <div class="video-about-reivew d-flex align-items-center">
+                                    <img src="../static/img/founder-img.png" alt="">
+                                    <div>
+                                        <span>Dan delion</span>
+
+                                        <p class="user-info">UI & UX Designer at Colorlib</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="video-about">
+                                <h2>People talking about</h2>
+                                <p class="video-about-text">"Discover; connect with great local businesses in your local neighborhood like dentists, hair stylists and more unde omnis iste natus error sit voluptatem.</p>
+                                <div class="video-about-reivew d-flex align-items-center">
+                                    <img src="../static/img/founder-img.png" alt="">
+                                    <div>
+                                        <span>Dan delion</span>
+
+                                        <p class="user-info">UI & UX Designer at Colorlib</p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+            </div>
+        </section>
+    </main>
+
+    {% endblock %}
+
+    
+
+    
+
+</body>
+
+</html>

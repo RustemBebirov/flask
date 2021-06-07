@@ -1,0 +1,44 @@
+.about-blog {
+    background-image: url(../img/h2_hero1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    z-index: 0;
+}
+
+.about-text {
+    padding-top: 80px;
+}
+
+.about-text h2 {
+    color: #fff;
+    font-size: 60px;
+    font-weight: 600;
+}
+
+.about-area {
+    padding-top: 80px;
+}
+
+.about-details h2 {
+    font-family: "Work Sans", sans-serif;
+    color: #1A213D;
+    font-size: 36px;
+    display: block;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 40px;
+}
+
+.about-details p {
+    color: #68696E;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.about-details img {
+    margin-top: 20px;
+    width: 856px;
+    height: 393px;
+}

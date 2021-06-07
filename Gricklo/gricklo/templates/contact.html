@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+</head>
+
+<body>
+    {% extends "layout.html"%}
+    {% block content%}
+    <main>
+        <div class="bg-contact d-flex align-items-center justify-content hero-overly">
+            <div class="contact-text ">
+                <h2>Contact Us</h2>
+            </div>
+        </div>
+
+        <section class="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="contact-tittle">Get in Touch</h2>
+                    </div>
+
+                </div>
+                <div class="row ">
+                    <div class="col-8">
+                        <form action="" class="form-contact">
+
+                            <div class="col-12">
+                                <div class="form-group mb-35">
+                                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="19" placeholder="Enter Message"></textarea>
+                                </div>
+                            </div>
+                            <div class="row mb-15">
+                                <div class="col-6">
+                                    <div class="form-group mr-20">
+                                        <input type="text" placeholder="Enter your name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <input type="email" placeholder="Enter mail address" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Enter Subbject">
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-25 mb-35">
+                                <button type="submit" class="boxed-btn">Send</button>
+                            </div>
+
+
+
+                        </form>
+
+                    </div>
+                    <div class="col-3 ml-100">
+
+                        <div class="media contact mb-15 ">
+                            <span class="contact-info-icon">
+                            <i class="fas fa-home"></i>
+                                </span>
+                            <div class="media-body">
+
+                                <h3>Buttonwood, California.</h3>
+                                <p>Rosemead, CA 91770</p>
+                            </div>
+                        </div>
+                        <div class="media contact mb-15">
+                            <span class="contact-info-icon">
+                            <i class="fas fa-phone"></i>
+                                 </span>
+                            <div class="media-body">
+                                <h3>+1 253 565 2365</h3>
+                                <p>Mon to Fri 9am to 6pm</p>
+                            </div>
+                        </div>
+                        <div class="media contact mb-15">
+                            <span class="contact-info-icon">
+                            <i class="fas fa-envelope-square"></i>
+                                </span>
+                            <div class="media-body">
+                                <h3>support@colorlib.com</h3>
+                                <p>Send us your query anytime!</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+    {% endblock %}
+
+    
+
+</body>
+
+</html>
