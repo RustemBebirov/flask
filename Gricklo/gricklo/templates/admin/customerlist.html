@@ -15,14 +15,14 @@
     </thead>
     <tbody>
     
-        {% for customer in customers %}
+        {% for user in users %}
         <tr>
-            <th scope="row">{{customer.id}}</th>
-            <td>{{customer.name}}</td>
-            <td>{{customer.email}}</td>
-            <td>{{customer.username}}</td>
-            <td>{{customer.phone}}</td>
-            <td><img src="/static/uploads/{{customer.image}}" alt=""></td>
+            <th scope="row">{{user.id}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.phone}}</td>
+            <td><img src="/static/uploads/{{user.image}}" alt=""></td>
           </tr>
         {% endfor %}
       

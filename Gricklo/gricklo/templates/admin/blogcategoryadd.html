@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+
+{% block content%}
+<form action="" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="form-outline">
+            <label class="form-label" for="typeText">Title</label>
+            <input type="text" id="typeText" class="form-control" name="title" />
+        </div>
+        <br><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+{% endblock %}

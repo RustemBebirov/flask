@@ -25,37 +25,27 @@
                     <div class="col-8">
                         <div class="blog-left-sidebar">
 
-
+                            
                             <div class="blog-item">
                                 <div class="blog-item-img ">
-                                    <img src="img/single_blog_5.jpg" alt="">
+                                    <img src="/static/uploads/{{blog.image}}" alt="">
 
                                 </div>
                                 <div class="blog-details">
                                     <a href="">
-                                        <h2 class="blog-head" style="color: #2d2d2d;">Second divided from form fish beast made every of seas all gathered us saying he our</h2>
+                                        <h2 class="blog-head" style="color: #2d2d2d;">{{blog.title}}</h2>
                                     </a>
                                     <ul class="blog-info-link">
                                         <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
                                         <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                                     </ul>
-                                    <p class="comment-text">MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price.
-                                        However, who has the willpower</p>
-                                    <p class="comment-text">MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price.
-                                        However, who has the willpower</p>
-
-                                    <div class="p-3 bg">
-                                        <p class="commen-text-2">MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp
-                                            price. However, who has the willpower</p>
-                                    </div>
-                                    <p class="comment-text">MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price.
-                                        However, who has the willpower</p>
-                                    <p class="comment-text">MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price.
-                                        However, who has the willpower</p>
+                                    <p class="comment-text">{{blog.description}}</p>
+                                    
                                     <hr>
 
                                 </div>
                             </div>
+                            
                             <div class="blog-info">
                                 <p>
                                     <span><i class="fa fa-heart"></i></span>
@@ -81,7 +71,7 @@
                                     <div class="col-6 d-flex">
                                         <div class="prev-post">
                                             <a href="">
-                                                <img src="img/preview.jpg" alt="preview">
+                                                <img src="/static/img/preview.jpg" alt="preview">
                                             </a>
                                             <div class="left-icon">
                                                 <a href="">
@@ -100,7 +90,7 @@
                                     <div class="col-6 d-flex row-reverse">
                                         <div class="prev-post">
                                             <a href="">
-                                                <img src="img/next.jpg" alt="preview">
+                                                <img src="/static/img/next.jpg" alt="preview">
                                             </a>
                                             <div class="left-icon">
                                                 <a href="">
@@ -120,13 +110,13 @@
 
                             <div class="blog-author">
                                 <div class="media">
-                                    <img src="img/author.png" alt="">
+                                    <img src="/static/uploads/{{blog.customer.image}}" alt="">
                                 </div>
                                 <div class="media-body">
                                     <a href="">
-                                        <h4>Harvard milan</h4>
+                                        <h4>{{blog.customer.name}}</h4>
                                     </a>
-                                    <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he our dominion twon Second divided from</p>
+                                    <p>{{blog.short_description}}</p>
                                 </div>
                             </div>
 
@@ -232,6 +222,7 @@
                                 </form>
 
                             </div>
+                            
 
 
                         </div>

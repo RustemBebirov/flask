@@ -26,6 +26,10 @@ img {
 
 /*header*/
 
+.success{
+    color: greenyellow;
+}
+
 .header-area {
     padding: 20px 100px;
     position: absolute;

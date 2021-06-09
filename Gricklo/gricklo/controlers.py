@@ -1,12 +1,11 @@
-from flask_wtf import form
-from gricklo import app , db
+from gricklo import app , db , bcrypt
 import os
 from flask import render_template,redirect,url_for,request,flash
 from werkzeug.utils import secure_filename
 from gricklo.models import *
-from gricklo.forms import RegistrationForm,LoginForm
+from gricklo.forms import RegistrationForm, LoginForm ,UserPostForm
 from gricklo.imageupload import save_picture
-from passlib.hash import sha256_crypt
+from flask_login import login_user
 
 @app.route("/")
 def index():
@@ -17,13 +16,16 @@ def index():
 @app.route("/about")
 def about():
     return render_template("about.html")
+
 @app.route("/blog")
 def blog():
-    return render_template("blog.html")
+    blogs=Blog.query.all()
+    return render_template("blog.html" , blogs=blogs)
 
-@app.route("/blogdetails")
-def blogdetails():
-    return render_template("blogdetails.html")
+@app.route("/blogdetails/<int:id>")
+def blogdetails(id):
+    blog=Blog.query.get_or_404(id)
+    return render_template("blogdetails.html" , blog= blog)
 
 @app.route("/contact")
 def contact():
@@ -37,43 +39,43 @@ def listing():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        username = form.username.data
-        password = form.username.data
-        customer = Customer.filter_by(username=username.data)
-        if customer:
-            real_password = customer['password']
-            if sha256_crypt.verify(password,real_password):
-                flash("Login is succsess..","success")
-                return redirect(url_for("index"))
-            else:
-                flash("Password is wrong","danger")
-                return redirect(url_for("login"))
+        user = User.query.filter_by(username=form.username.data).first()
+        if user and bcrypt.check_password_hash(user.password,form.password.data):
+            login_user(user)
+            
+            flash("Login is succsess..","success")
+            return redirect(url_for("index"))
+        else:
+            flash("Password is wrong","danger")
+            return redirect(url_for("login"))
 
-
-
-
-    
     return render_template("login.html",form=form)
 
 @app.route("/register", methods=["GET","POST"])
 def signup():
     form = RegistrationForm()
     if form.validate_on_submit():
-        customer = Customer(
+        user_password = form.password.data
+        parol_hashed = bcrypt.generate_password_hash(user_password).decode("utf-8")
+        user = User(
             name = form.name.data,
             username = form.username.data,
             email = form.email.data,
-            password = sha256_crypt.encrypt(form.password.data),
+            password = parol_hashed,
             phone = form.phone.data,
             image = save_picture(form.image.data)
 
         )
-        db.session.add(customer)
+        db.session.add(user)
         db.session.commit()
         return redirect(url_for('login'))
 
     return render_template("register.html" , form=form)
 
+@app.route("/account")
+def account():
+    form = UserPostForm()
+    return render_template("account.html" , form=form)
 
 #Admin
 @app.route("/admin")
@@ -83,8 +85,8 @@ def dashboard():
 
 @app.route('/admin/customerlist')
 def customerlist():
-    customers = Customer.query.all()
-    return render_template('admin/customerlist.html', customers=customers)
+    users = User.query.all()
+    return render_template('admin/customerlist.html', users=users)
     
 
 
@@ -187,7 +189,8 @@ def city_delete(id):
 #blog
 @app.route("/admin/blogadd", methods=["GET","POST"])
 def blog_add():
-    categoris = BlogCategory.query.all()
+    categories = BlogCategory.query.all()
+    customers = User.query.all()
     if request.method == "POST":
         file = request.files['file']
         filename = secure_filename(file.filename)
@@ -195,38 +198,44 @@ def blog_add():
         blog = Blog(
             title = request.form['title'],
             short_description = request.form['short_description'],
+            description = request.form['description'],
             image = filename,
-            city = request.form['city']
+            category = request.form['category'],
+            customer = request.form['customer']
+
 
         )
         db.session.add(blog)
         db.session.commit()
         return redirect(url_for("blog_list"))
-    return render_template("admin/blogadd.html", categoris=categoris )
+    return render_template("admin/blogadd.html", categories=categories, customers=customers )
 
 @app.route('/admin/bloglist')
 def blog_list():
     blogs = Blog.query.all()
     
-    return render_template('admin/reslist.html', blogs=blogs )
+    return render_template('admin/bloglist.html', blogs=blogs )
 
 
 @app.route('/admin/blogedit/<int:id>' ,methods=["GET","POST"])
 def blog_edit(id):
-    categories =Blog.query.all()
-    blogs = Restaurant.query.get_or_404(id)
+    categories = BlogCategory.query.all()
+    customers = User.query.all()
+    blogs = Blog.query.get_or_404(id)
     if request.method == "POST":
         file = request.files['file']
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         blogs.title= request.form['title']
-        blogs.location = request.form['location']
+        blogs.short_description = request.form['short_description']
+        blogs.description = request.form['description']
         blogs.image = filename
-        blogs.city = request.form['city']
+        blogs.category = request.form['category']
+        blogs.customer = request.form['customer']
         db.session.commit()
-        return redirect(url_for("restaurant_list"))
+        return redirect(url_for("blog_list"))
 
-    return render_template('admin/blogedit.html', blogs=blogs , categories = categories)
+    return render_template('admin/blogedit.html', blogs=blogs , categories = categories,customers=customers)
 
 @app.route('/admin/blogdelete/<int:id>')
 def blog_delete(id):
@@ -236,11 +245,11 @@ def blog_delete(id):
     return redirect(url_for("blog_list"))
 
 
-#blogcategory
+#category
 @app.route("/admin/categoryadd", methods=["GET","POST"])
 def category_add():
     if request.method == "POST":
-        category = BlogCategory(
+        category = Category(
             title = request.form['title']
         )
         db.session.add(category)
@@ -250,12 +259,12 @@ def category_add():
 
 @app.route('/admin/categorylist')
 def category_list():
-    categories = BlogCategory.query.all()
+    categories = Category.query.all()
     return render_template('admin/categorylist.html', categories=categories)
 
 @app.route('/admin/categoryedit/<int:id>' ,methods=["GET","POST"])
 def category_edit(id):
-    categories =BlogCategory.query.all()
+    categories = Category.query.get_or_404(id)
     if request.method == "POST":
         categories.title= request.form['title']
         db.session.commit()
@@ -265,7 +274,42 @@ def category_edit(id):
 
 @app.route('/admin/categorydelete/<int:id>')
 def category_delete(id):
-    categories = BlogCategory.query.get_or_404(id)
+    categories = Category.query.get_or_404(id)
     db.session.delete(categories)
     db.session.commit()
     return redirect(url_for("category_list"))
+
+#blog category
+@app.route("/admin/blogcategoryadd", methods=["GET","POST"])
+def blogcategory_add():
+    if request.method == "POST":
+        blogcategory =BlogCategory(
+            title = request.form['title']
+        )
+        db.session.add(blogcategory)
+        db.session.commit()
+        return redirect(url_for("blogcategory_list"))
+    return render_template("admin/blogcategoryadd.html")
+
+
+@app.route('/admin/blogcategorylist')
+def blogcategory_list():
+    blogcategories = BlogCategory.query.all()
+    return render_template('admin/blogcategorylist.html', blogcategories=blogcategories)
+
+@app.route('/admin/blogcategoryedit/<int:id>' ,methods=["GET","POST"])
+def blogcategory_edit(id):
+    blogcategories = BlogCategory.query.get_or_404(id)
+    if request.method == "POST":
+        blogcategories.title= request.form['title']
+        db.session.commit()
+        return redirect(url_for("blogcategory_list"))
+
+    return render_template('admin/blogcategoryedit.html', blogcategories = blogcategories)
+
+@app.route('/admin/blogcategorydelete/<int:id>')
+def blogcategory_delete(id):
+    blogcategories = BlogCategory.query.get_or_404(id)
+    db.session.delete(blogcategories)
+    db.session.commit()
+    return redirect(url_for("blogcategory_list"))

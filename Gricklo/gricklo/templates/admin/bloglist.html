@@ -1,0 +1,44 @@
+{% extends "admin/base.html"%}
+
+{% block content%}
+<h2>Blogs</h2>
+<div class="container">
+    <div class="row">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">TITLE</th>
+                <th scope="col">Short Description</th>
+                <th scope="col">Description</th>
+                <th scope="col">Posted</th>
+                <th scope="col">IMAGE</th>
+                <th scope="col">Category</th>
+                <th scope="col">User</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for blog in blogs %}
+                <tr>
+                    <th scope="row">{{blog.id}}</th>
+                    <td>{{blog.title}}</td>
+                    <td>{{blog.short_description |truncate (8)}}</td>
+                    <td>{{blog.description |truncate (20)}}}}</td>
+                    <td>{{blog.blog_posted}}</td>
+        
+                    <td><img src="/static/uploads/{{blog.image}}" alt="" class="w-50"></td>
+                    <td>{{blog.category}}</td>
+                    <td>{{blog.customer}}</td>
+                    <td><a href="{{url_for('blog_edit', id=blog.id)}}"><i class="fas fa-edit"></i>Update</a></td>
+                    <td><a href="{{url_for('blog_delete', id=blog.id)}}" onclick="return confirm('Are you sure to delete?')"><i class="fas fa-trash-alt"></i>Delete</a></td>
+                  </tr>
+                {% endfor %}
+              
+            </tbody>
+          </table>   
+    </div>
+</div>
+  
+{% endblock %}

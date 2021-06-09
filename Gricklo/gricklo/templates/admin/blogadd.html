@@ -11,17 +11,23 @@
             <label class="form-label" for="typeText">Short Description</label>
             <input type="text" id="typeText" class="form-control" name="short_description" />
         </div>
-        <div class="form-outline">
-            <label class="form-label" for="typeText">Short Description</label>
-            <textarea type="text" id="typeText" class="form-control" name="short_description" >
-        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name='description'></textarea>
+          </div>
         <div class="form-group">
             <label for="exampleFormControlFile1">Image</label>
             <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
         </div>
         <select class ='custom-select' name="category" id="">
-            {% for category in categories%}
-            <option value="1">{{category.title}}</option>
+            {% for category in categories %}
+                <option value="1">{{category.title}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <select class ='custom-select' name="customer" id="">
+            {% for customer in customers%}
+                <option value="1">{{customer.username}}</option>
             {% endfor %}
         </select>
         
