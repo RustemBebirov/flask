@@ -1,3 +1,4 @@
+from werkzeug import datastructures
 from gricklo import app , db , bcrypt
 import os
 from flask import render_template,redirect,url_for,request,flash
@@ -5,7 +6,7 @@ from werkzeug.utils import secure_filename
 from gricklo.models import *
 from gricklo.forms import RegistrationForm, LoginForm ,UserPostForm
 from gricklo.imageupload import save_picture
-from flask_login import login_user
+from flask_login import login_user, logout_user,login_required,current_user
 
 @app.route("/")
 def index():
@@ -51,6 +52,8 @@ def login():
 
     return render_template("login.html",form=form)
 
+
+
 @app.route("/register", methods=["GET","POST"])
 def signup():
     form = RegistrationForm()
@@ -72,10 +75,51 @@ def signup():
 
     return render_template("register.html" , form=form)
 
-@app.route("/account")
+@app.route("/account", methods=["GET","POST"])
+@login_required
 def account():
+    user_posts = UserPost.query.all()
     form = UserPostForm()
-    return render_template("account.html" , form=form)
+    if form.validate_on_submit():
+        user_post=UserPost(
+            title = form.title.data,
+            short_description = form.short_description.data,
+            content = form.content.data,
+            image = save_picture(form.image.data),
+            author = current_user.username,
+        )
+        db.session.add(user_post)
+        db.session.commit()
+        return redirect(url_for("account"))
+    return render_template("account.html" , form=form , user_posts=user_posts)
+
+@app.route('/postedit/<int:id>' ,methods=["GET","POST"])
+def post_edit(id):
+    user_posts = UserPost.query.get_or_404(id)
+    form = UserPostForm()
+    if request.method == "POST":
+        user_posts.title= form.title.data
+        user_posts.short_description = form.short_description.data
+        user_posts.content = form.content.data
+        user_posts.image = save_picture(form.image.data)
+        db.session.commit()
+        return redirect(url_for("account"))
+
+    return render_template('postedit.html' ,form=form)
+
+
+@app.route('/postdelete/<int:id>')
+def post_delete(id):
+    user_post = UserPost.query.get_or_404(id)
+    db.session.delete(user_post)
+    db.session.commit()
+    return redirect(url_for("account"))
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("index"))
 
 #Admin
 @app.route("/admin")
