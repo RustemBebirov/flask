@@ -38,7 +38,6 @@
                                     <li><a href="{{ url_for('blog') }}" class="nav-link">Blog</a>
                                         <ul>
                                             <li><a href="{{ url_for('blog') }}">Blog</a></li>
-                                            <li><a href="{{ url_for('blogdetails') }}">Blog Details</a></li>
                                             <li><a href="">Element</a></li>
                                         </ul>
                                     </li>
@@ -55,7 +54,13 @@
                     <div class="col-3 ">
 
                         <div class="nav-button">
+                            {% if current_user.is_authenticated%}
+                            <a href="{{ url_for('account') }}" class="header-btn mr-15">Account</a>
+                            <a href="{{ url_for('logout') }}" class="header-btn mr-15">Logout</a>
+                            {% else %}
+                            <a href="{{ url_for('signup') }}" class="header-btn mr-15">Register</a>
                             <a href="{{ url_for('login') }}" class="header-btn mr-15">Sign In</a>
+                            {% endif %}
                             <a href="" class="btn header-btn2">Add Listing</a>
                             <div class="burger ml-10">
                                 <div class="line1"></div>

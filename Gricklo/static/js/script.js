@@ -40,8 +40,8 @@ setInterval(() => {
 
 function autoplay(params) {
     let sliderLine2 = document.querySelector('.slider-line-2');
-    move1 += 480;
-    if (move1 > 1240) {
+    move1 += 660;
+    if (move1 > 1320) {
         move1 = 0
     }
 

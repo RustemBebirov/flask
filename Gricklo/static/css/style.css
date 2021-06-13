@@ -26,6 +26,10 @@ img {
 
 /*header*/
 
+.success{
+    color: greenyellow;
+}
+
 .header-area {
     padding: 20px 100px;
     position: absolute;
@@ -222,10 +226,10 @@ img {
     }
     /*header*/
     .header-area .col-9 {
-        width: 50%;
+        width: 30%;
     }
     .header-area .col-3 {
-        width: 50%;
+        width: 70%;
     }
     .logo img {
         width: 75%;
@@ -983,7 +987,7 @@ img {
 }
 
 .slider-block-2 {
-    width: 1240px !important;
+    width: 1300px !important;
     height: auto;
     margin: 0 auto;
     overflow: hidden;
@@ -998,7 +1002,7 @@ img {
 }
 
 .video-about {
-    min-width: fit-content;
+    min-width: 650px;
     margin-right: 20px;
 }
 

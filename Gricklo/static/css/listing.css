@@ -6,6 +6,10 @@
     z-index: 0;
 }
 
+.row{
+    flex-wrap: wrap;
+}
+
 .listing-text {
     padding-top: 80px;
 }
@@ -31,7 +35,7 @@
 }
 
 .properties-card {
-    margin: 20px 20px;
+    margin: 20px !important;
 }
 
 .category-listing {
