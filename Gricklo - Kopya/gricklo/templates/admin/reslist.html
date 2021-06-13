@@ -24,7 +24,7 @@
             <td>{{restourant.location}}</td>
             <td>{{restourant.status}}</td>
             <td>{{restourant.phone}}</td>
-            <td>{{restourant.cities.title}}</td>
+            <td>{{restourant.city}}</td>
             <td><img src="/static/uploads/{{restourant.image}}" alt=""></td>
             <td><a href="{{url_for('restaurant_edit', id=restourant.id)}}"><i class="fas fa-edit"></i>Update</a></td>
             <td><a href="{{url_for('restaurant_delete', id=restourant.id)}}" onclick="return confirm('Are you sure to delete?')">

@@ -28,7 +28,7 @@
                     <td>{{blog.blog_posted}}</td>
         
                     <td><img src="/static/uploads/{{blog.image}}" alt="" class="w-50"></td>
-                    <td>{{blog.categories.title}}</td>
+                    <td>{{blog.category}}</td>
                     <td><a href="{{url_for('blog_edit', id=blog.id)}}"><i class="fas fa-edit"></i>Update</a></td>
                     <td><a href="{{url_for('blog_delete', id=blog.id)}}" onclick="return confirm('Are you sure to delete?')"><i class="fas fa-trash-alt"></i>Delete</a></td>
                   </tr>
