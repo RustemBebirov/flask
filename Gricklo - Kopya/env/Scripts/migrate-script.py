@@ -1,4 +1,4 @@
-#!c:\users\rustem\documents\github\back-end\portfolio\flask\gricklo\env\scripts\python.exe
+#!"c:\users\rustem\documents\flask\gricklo - kopya\env\scripts\python.exe"
 # EASY-INSTALL-ENTRY-SCRIPT: 'migrate==0.3.7','console_scripts','migrate'
 import re
 import sys

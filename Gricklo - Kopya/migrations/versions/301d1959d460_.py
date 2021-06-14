@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 5e419d1cda26
+Revision ID: 301d1959d460
 Revises: 
-Create Date: 2021-06-13 19:33:19.591408
+Create Date: 2021-06-14 10:08:34.181603
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5e419d1cda26'
+revision = '301d1959d460'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -34,6 +34,13 @@ def upgrade():
     sa.Column('image', sa.String(length=20), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('title')
+    )
+    op.create_table('contact',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('message', sa.Text(), nullable=False),
+    sa.Column('author', sa.String(length=20), nullable=False),
+    sa.Column('email', sa.String(length=20), nullable=False),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('user',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -127,6 +134,7 @@ def downgrade():
     op.drop_table('order')
     op.drop_table('blog')
     op.drop_table('user')
+    op.drop_table('contact')
     op.drop_table('city')
     op.drop_table('category')
     op.drop_table('blogcategory')

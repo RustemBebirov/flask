@@ -43,8 +43,18 @@ def blogdetails(id):
         return redirect(url_for('blogdetails', id=blog.id))
     return render_template("blogdetails.html" , blog= blog, categories=categories, posts=posts,comments = comments)
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET","POST"])
 def contact():
+    if request.method == "POST":
+        contact = Contact(
+            author = request.form['author'],
+            email = request.form['email'],
+            message = request.form['message'],
+
+        )
+        db.session.add(contact)
+        db.session.commit()
+        return redirect(url_for("index"))
     return render_template("contact.html")
 
 @app.route("/listing")

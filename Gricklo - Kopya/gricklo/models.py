@@ -125,3 +125,11 @@ class City(db.Model):
     restaurant =db.relationship(Restaurant, backref='cities',lazy=True ,cascade="all,delete")
     def __repr__(self) -> str:
         return f"City:{self.title}"
+
+
+class Contact(db.Model):
+    __tablename__ = "contact"
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.Text,nullable=False)
+    author = db.Column(db.String(20),nullable=False)
+    email = db.Column(db.String(20),nullable=False)
