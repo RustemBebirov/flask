@@ -250,6 +250,7 @@ img {
         padding-left: 20px;
         transform: translateX(100%);
         transition: transform 0.5s ease-in;
+        background: rgba(26, 33, 61, 0.8);
     }
     nav li {
         opacity: 0;
@@ -268,6 +269,7 @@ img {
         }
     }
     /*nav animeted*/
+
     .form-box {
         display: none;
     }
@@ -285,7 +287,12 @@ img {
         cursor: pointer;
     }
     /*main*/
-    .hero-bg1 {}
+    
+    .hero-caption .flash{
+        font-size: 32px;
+        color: green;
+    }
+
     .hero-caption {
         padding-top: 0px;
     }
@@ -403,6 +410,8 @@ img {
 
 /*main*/
 
+
+
 .hero-bg1 {
     background-image: url(../img/h1_hero.jpg);
     background-size: cover;
@@ -430,6 +439,11 @@ img {
 
 .slinder-height1 {
     min-height: 956px;
+}
+
+.hero-caption .flash{
+    font-size: 32px;
+    color: green;
 }
 
 .slider-area .hero-caption {

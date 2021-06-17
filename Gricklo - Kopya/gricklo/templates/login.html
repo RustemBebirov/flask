@@ -15,7 +15,9 @@
         <div class="container " style="min-height: 936px;">
             <div class="row  justify-content-center">
                 <div class="col-sm-4">
+                    
                     <h2 class="text-center" style="margin-top: 200px;">Login</h2>
+                    {% include "includes/messages.html "%}
                     <form action="" method="POST" enctype="multipart/form-data" >
                         {{ form.csrf_token() }}
                         <div class="form-group">

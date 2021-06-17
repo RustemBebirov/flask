@@ -38,7 +38,7 @@
                                     </a>
                                     <ul class="blog-info-link">
                                         <li><a href="#"><i class="fa fa-user"></i>{{blog.category}}</a></li>
-                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i>{{comment_count}}</a></li>
                                     </ul>
                                     <p class="comment-text">{{blog.description}}</p>
                                     
@@ -112,11 +112,17 @@
                             
 
                             <div class="comment-area">
-                                <h2>05 Comments</h2>
+                                <h2>{{comment_count}}</h2>
                                 {% for comment in comments%}
+                                {% if current_user.is_authenticated %}
                                 <div class="media mt-50">
-                                    <img src="img/comment_1.png" alt="">
+                                    <img src="/static/uploads/{{current_user.image}}" alt="">
                                 </div>
+                                {% else %}
+                                <div class="media mt-50">
+                                    <img src="/static/uploads/{{comment.author_image}}" alt="">
+                                </div>
+                                {% endif %}
                                 <p>{{comment.comment}}</p>
                                 <div class="media-body">
 
@@ -238,25 +244,25 @@
                                 <h2>Instagram Feeds</h2>
                                 <div class="instagram-feeds-img d-flex">
                                     <div class="instagram-img">
-                                        <img src="img/post_5.jpg" alt="">
+                                        <img src="/static/img/post_5.jpg" alt="">
                                     </div>
                                     <div class="instagram-img">
-                                        <img src="img/post_6.jpg" alt="">
+                                        <img src="/static/img/post_6.jpg" alt="">
                                     </div>
                                     <div class="instagram-img">
-                                        <img src="img/post_7.jpg" alt="">
+                                        <img src="/static/img/post_7.jpg" alt="">
                                     </div>
 
                                 </div>
                                 <div class="instagram-feeds-img d-flex">
                                     <div class="instagram-img">
-                                        <img src="img/post_5.jpg" alt="">
+                                        <img src="/static/img/post_5.jpg" alt="">
                                     </div>
                                     <div class="instagram-img">
-                                        <img src="img/post_6.jpg" alt="">
+                                        <img src="/static/img/post_6.jpg" alt="">
                                     </div>
                                     <div class="instagram-img">
-                                        <img src="img/post_7.jpg" alt="">
+                                        <img src="/static/img/post_7.jpg" alt="">
                                     </div>
 
                                 </div>

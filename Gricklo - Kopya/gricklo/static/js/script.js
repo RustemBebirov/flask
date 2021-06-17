@@ -57,7 +57,7 @@ setInterval(() => {
 window.addEventListener('scroll', () => {
     if (window.scrollY > window.innerHeight / 4 - document.querySelector('header').clientHeight) {
         document.querySelector('.main-header').classList.add('sticky-bar')
-        document.querySelector('nav').style.background = 'rgba(26, 33, 61, 0.8)'
+        // document.querySelector('nav').style.background = 'rgba(26, 33, 61, 0.8)'
     } else {
         document.querySelector('.main-header').classList.remove('sticky-bar')
         document.querySelector('nav').style.background = ''

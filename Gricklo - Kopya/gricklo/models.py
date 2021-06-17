@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(20),nullable=False)
     email = db.Column(db.String(25), unique=True, nullable=False)
     password = db.Column(db.String(25), unique=True, nullable=False)
-    image = db.Column(db.String(20),default='static/uploads/user.png')
+    image = db.Column(db.String(50),default='user.png')
     orders = db.relationship('Order',backref='owners',lazy=True, cascade="all,delete")
     comments =db.relationship('Comment',backref='authors',lazy=True, cascade="all,delete")
     user_post = db.relationship('UserPost',backref='users',lazy=True, cascade="all,delete")
@@ -45,8 +45,8 @@ class Comment(db.Model, UserMixin):
     comment = db.Column(db.Text,nullable=False)
     comment_posted=db.Column(db.DateTime,default=datetime.utcnow)
     blogs = db.Column(db.Integer,db.ForeignKey("blog.id"),nullable=False)
-    image = db.Column(db.String(20), default = "static/uploads/comment.png")
     reply = db.relationship('Comment_reply',backref='comment_reply',lazy=True, cascade="all,delete")
+    author_image=db.Column(db.String(20), default = "author.png")
     
     def __repr__(self) -> str:
         return f"Comment:{self.title}"
@@ -59,7 +59,6 @@ class Comment_reply(db.Model, UserMixin):
     comment = db.Column(db.Text,nullable=False)
     comment_posted=db.Column(db.DateTime,default=datetime.utcnow)
     comment_id = db.Column(db.Integer,db.ForeignKey("comment.id"),nullable=False)
-    image = db.Column(db.String(20), default = "static/uploads/comment.png")
 
 
 class Blog(db.Model):

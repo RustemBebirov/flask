@@ -16,7 +16,8 @@ def index():
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    citys = City.query.all()
+    return render_template("about.html", citys= citys)
 
 @app.route("/blog")
 def blog():
@@ -31,27 +32,46 @@ def blogdetails(id):
     posts = UserPost.query.all()
     blog=Blog.query.get_or_404(id)
     comments = Comment.query.filter_by(blogs=id)
+    # comment_count = Comment.query.filter(Comment.id == blog.id).count()
     if request.method == "POST":
-        comment = Comment(
-            author = request.form['author'],
-            email = request.form['email'],
+        if current_user.is_authenticated:
+            comment = Comment(
+            author = current_user.name,
+            email = current_user.email,
             comment = request.form['comment'],
-            blogs = blog.id
+            blogs = blog.id,
+            author_image = current_user.image
         )
+        else:
+            comment = Comment(
+                author = request.form['author'],
+                email = request.form['email'],
+                comment = request.form['comment'],
+                blogs = blog.id
+            )
         db.session.add(comment)
         db.session.commit()
         return redirect(url_for('blogdetails', id=blog.id))
-    return render_template("blogdetails.html" , blog= blog, categories=categories, posts=posts,comments = comments)
+    return render_template("blogdetails.html" , blog= blog, categories=categories, posts=posts,comments = comments, )
 
 @app.route("/contact", methods=["GET","POST"])
 def contact():
     if request.method == "POST":
-        contact = Contact(
-            author = request.form['author'],
-            email = request.form['email'],
+        if current_user.is_authenticated:
+            contact = Contact(
+            author = current_user.name,
+            email = current_user.email,
             message = request.form['message'],
 
         )
+        else:
+
+            contact = Contact(
+                author = request.form['author'],
+                email = request.form['email'],
+                message = request.form['message'],
+
+            )
         db.session.add(contact)
         db.session.commit()
         return redirect(url_for("index"))
@@ -95,6 +115,7 @@ def signup():
         )
         db.session.add(user)
         db.session.commit()
+        flash("Your registration is success" ,'success')
         return redirect(url_for('login'))
 
     return render_template("register.html" , form=form)
