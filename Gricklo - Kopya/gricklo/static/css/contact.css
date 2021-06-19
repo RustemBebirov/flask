@@ -69,3 +69,7 @@
     text-transform: uppercase;
     cursor: pointer;
 }
+
+.ml-50{
+    margin-left: 50px;
+}

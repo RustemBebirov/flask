@@ -114,15 +114,13 @@
                             <div class="comment-area">
                                 <h2>{{comment_count}}</h2>
                                 {% for comment in comments%}
-                                {% if current_user.is_authenticated %}
-                                <div class="media mt-50">
-                                    <img src="/static/uploads/{{current_user.image}}" alt="">
-                                </div>
-                                {% else %}
+                                
+                                
+                                
                                 <div class="media mt-50">
                                     <img src="/static/uploads/{{comment.author_image}}" alt="">
                                 </div>
-                                {% endif %}
+                                
                                 <p>{{comment.comment}}</p>
                                 <div class="media-body">
 
@@ -229,14 +227,9 @@
                                 <h2>Tag clouds</h2>
                                 <div class="tag-clouds-body">
                                     <ul>
-                                        <li><a href="" class="tag-clouds-link ">project</a> </li>
-                                        <li><a href="" class="tag-clouds-link ">love</a> </li>
-                                        <li><a href="" class="tag-clouds-link ">technology</a> </li>
-                                        <li><a href="" class="tag-clouds-link ">travel</a> </li>
-                                        <li><a href="" class="tag-clouds-link ">restaurant</a> </li>
-                                        <li><a href="" class="tag-clouds-link ">life style</a> </li>
-                                        <li><a href="" class="tag-clouds-link ">design</a> </li>
-                                        <li><a href="" class="tag-clouds-link ">illustration</a></li>
+                                        {% for tag in tags%}
+                                        <li><a href="" class="tag-clouds-link ">{{tag.title}}</a> </li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>

@@ -8,6 +8,10 @@
             <input type="text" id="typeText" class="form-control" name="title" />
         </div>
         <div class="form-outline">
+            <label class="form-label" for="typeText">Tag</label>
+            <input type="text" id="typeText" class="form-control" name="tag" />
+        </div>
+        <div class="form-outline">
             <label class="form-label" for="typeText">Short Description</label>
             <input type="text" id="typeText" class="form-control" name="short_description" />
         </div>
@@ -19,6 +23,7 @@
             <label for="exampleFormControlFile1">Image</label>
             <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
         </div>
+        <label class="form-label" for="typeText">Category</label>
         <select class ='custom-select' name="category" id="">
             {% for category in categories %}
                 <option >{{category.title}}</option>

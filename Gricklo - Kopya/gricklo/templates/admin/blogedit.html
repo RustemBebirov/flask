@@ -24,6 +24,11 @@
                 <option >{{category.title}}</option>
             {% endfor %}
         </select>
+        <select class ='custom-select' name="tag" id="">
+            {% for tag in tags %}
+                <option >{{tag.title}}</option>
+            {% endfor %}
+        </select>
         <br><br>
         <button type="submit" class="btn btn-primary">Update</button>
     </div>

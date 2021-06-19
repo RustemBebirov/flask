@@ -1,3 +1,4 @@
+import re
 from werkzeug import datastructures
 from gricklo import app , db , bcrypt
 import os
@@ -8,31 +9,35 @@ from gricklo.forms import RegistrationForm, LoginForm ,UserPostForm
 from gricklo.imageupload import save_picture
 from flask_login import login_user, logout_user,login_required,current_user
 
+#Home
 @app.route("/")
 def index():
     restaurants = Restaurant.query.all()
     citys = City.query.all()
     return render_template("index.html",restaurants=restaurants, citys= citys)
-
+#about
 @app.route("/about")
 def about():
     citys = City.query.all()
     return render_template("about.html", citys= citys)
 
+#Blog page
 @app.route("/blog")
 def blog():
+    tags= Tag.query.all()
     categories=BlogCategory.query.all()
     posts = UserPost.query.all()
     blogs=Blog.query.all()
-    return render_template("blog.html" , blogs=blogs , categories=categories, posts= posts)
+    return render_template("blog.html" , blogs=blogs , categories=categories, posts= posts ,tags=tags)
 
 @app.route("/blogdetails/<int:id>", methods=["GET","POST"])
 def blogdetails(id):
+    tags= Tag.query.all()
     categories=BlogCategory.query.all()
     posts = UserPost.query.all()
     blog=Blog.query.get_or_404(id)
     comments = Comment.query.filter_by(blogs=id)
-    # comment_count = Comment.query.filter(Comment.id == blog.id).count()
+    comment_count = Comment.query.filter(Comment.blogs == blog.id).count()
     if request.method == "POST":
         if current_user.is_authenticated:
             comment = Comment(
@@ -52,8 +57,9 @@ def blogdetails(id):
         db.session.add(comment)
         db.session.commit()
         return redirect(url_for('blogdetails', id=blog.id))
-    return render_template("blogdetails.html" , blog= blog, categories=categories, posts=posts,comments = comments, )
+    return render_template("blogdetails.html" , blog= blog, categories=categories, posts=posts,comments = comments,comment_count=comment_count, tags=tags )
 
+#Contact
 @app.route("/contact", methods=["GET","POST"])
 def contact():
     if request.method == "POST":
@@ -76,12 +82,14 @@ def contact():
         db.session.commit()
         return redirect(url_for("index"))
     return render_template("contact.html")
-
+#Restaurant listing
 @app.route("/listing")
 def listing():
     restaurants = Restaurant().query.all()
-    return render_template("listing.html" , restaurants= restaurants)
+    res_count = Restaurant.query.count()
+    return render_template("listing.html" , restaurants= restaurants,res_count=res_count )
 
+#Login
 @app.route("/login", methods=["GET","POST"])
 def login():
     form = LoginForm()
@@ -99,7 +107,7 @@ def login():
     return render_template("login.html",form=form)
 
 
-
+#Registration 
 @app.route("/register", methods=["GET","POST"])
 def signup():
     form = RegistrationForm()
@@ -120,6 +128,7 @@ def signup():
 
     return render_template("register.html" , form=form)
 
+#profile page, user post add
 @app.route("/account", methods=["GET","POST"])
 @login_required
 def account():
@@ -137,7 +146,7 @@ def account():
         db.session.commit()
         return redirect(url_for("account"))
     return render_template("account.html" , form=form , user_posts=user_posts)
-
+#User post edit
 @app.route('/postedit/<int:id>' ,methods=["GET","POST"])
 def post_edit(id):
     user_posts = UserPost.query.get_or_404(id)
@@ -152,7 +161,7 @@ def post_edit(id):
 
     return render_template('postedit.html' ,form=form)
 
-
+#User post delete
 @app.route('/postdelete/<int:id>')
 def post_delete(id):
     user_post = UserPost.query.get_or_404(id)
@@ -160,13 +169,14 @@ def post_delete(id):
     db.session.commit()
     return redirect(url_for("account"))
 
+#Logout
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for("index"))
 
-#Admin
+#Admin panel
 @app.route("/admin")
 @login_required
 def dashboard():
@@ -296,10 +306,16 @@ def blog_add():
             description = request.form['description'],
             image = filename,
             category = request.form['category'],
-
+        )
+        
+        tag = Tag(
+            title = request.form['tag']
         )
         db.session.add(blog)
         db.session.commit()
+        tag.blogs.append(blog)
+        db.session.commit()
+        
         return redirect(url_for("blog_list"))
     return render_template("admin/blogadd.html", categories=categories, customers=customers )
 
@@ -314,6 +330,7 @@ def blog_list():
 def blog_edit(id):
     categories = BlogCategory.query.all()
     customers = User.query.all()
+    tags = Tag.query.all()
     blogs = Blog.query.get_or_404(id)
     if request.method == "POST":
         file = request.files['file']
@@ -324,10 +341,11 @@ def blog_edit(id):
         blogs.description = request.form['description']
         blogs.image = filename
         blogs.category = request.form['category']
+        blogs.tag = request.form['tag']
         db.session.commit()
         return redirect(url_for("blog_list"))
 
-    return render_template('admin/blogedit.html', blogs=blogs , categories = categories,customers=customers)
+    return render_template('admin/blogedit.html', blogs=blogs , categories = categories,customers=customers, tags= tags)
 
 @app.route('/admin/blogdelete/<int:id>')
 def blog_delete(id):
@@ -405,3 +423,27 @@ def blogcategory_delete(id):
     db.session.delete(blogcategories)
     db.session.commit()
     return redirect(url_for("blogcategory_list"))
+
+# tag
+
+@app.route('/admin/taglist')
+def tag_list():
+    tags = Tag.query.all()
+    return render_template('admin/taglist.html', tags=tags)
+
+@app.route('/admin/tagedit/<int:id>' ,methods=["GET","POST"])
+def tag_edit(id):
+    tag = Tag.query.get_or_404(id)
+    if request.method == "POST":
+        tag.title= request.form['title']
+        db.session.commit()
+        return redirect(url_for("tag_list"))
+
+    return render_template('admin/tagedit.html', tag = tag)
+
+@app.route('/admin/tagdelete/<int:id>')
+def tag_delete(id):
+    tag = Tag.query.get_or_404(id)
+    db.session.delete(tag)
+    db.session.commit()
+    return redirect(url_for("tag_list"))

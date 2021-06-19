@@ -1,3 +1,4 @@
+from sqlalchemy.orm import backref
 from gricklo import db , login_manager
 from datetime import datetime
 from flask_login import UserMixin
@@ -29,7 +30,7 @@ class UserPost(db.Model, UserMixin):
     short_description = db.Column(db.String(50),nullable=False)
     blog_posted = db.Column(db.DateTime, default=datetime.utcnow)
     content = db.Column(db.String(50),nullable=False)
-    image = db.Column(db.String(20), default = "static/uploads/post.png")
+    image = db.Column(db.String(20), default = "post.png")
     user =db.Column(db.Integer, db.ForeignKey("user.id"),nullable=False)
 
     def __repr__(self) -> str:
@@ -70,8 +71,9 @@ class Blog(db.Model):
     blog_posted = db.Column(db.DateTime, default=datetime.utcnow)
     image = db.Column(db.String(20), default = "default.png")
     category = db.Column(db.Integer, db.ForeignKey('blogcategory.id'), nullable=False)
+    tag = db.relationship('Tag', secondary='blogs_tags', backref=db.backref('blogs', lazy='dynamic'))
     comment = db.relationship('Comment',backref='users',lazy=True, cascade="all,delete")
-    def __repr__(self) -> str:
+    def __repr__(self):
         return f"Blog :{self.title}"
 
 class BlogCategory(db.Model):
@@ -79,7 +81,7 @@ class BlogCategory(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(50),nullable = False)
     blog =db.relationship('Blog', backref='categories',lazy=True)
-    def __repr__(self) -> str:
+    def __repr__(self):
         return f"Blog Category:{self.title}"
 
 class Category(db.Model):
@@ -87,7 +89,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(50),nullable = False)
     order = db.relationship("Order", backref='categories',lazy=True )
-    def __repr__(self) -> str:
+    def __repr__(self):
         return f"Category:{self.title}"
 
 
@@ -101,7 +103,7 @@ class Order(db.Model):
     image = db.Column(db.String(20),default='image.png')
     customer_id = db.Column(db.Integer,db.ForeignKey("user.id"),nullable=False)
     category = db.Column(db.Integer,db.ForeignKey("category.id"),nullable=False)
-    def __repr__(self) -> str:
+    def __repr__(self):
         return f"Order:{self.title}"
 
 class Restaurant(db.Model):
@@ -113,7 +115,7 @@ class Restaurant(db.Model):
     phone = db.Column(db.String(50), nullable=False)
     image = db.Column(db.String(20),default='image.png')
     city = db.Column(db.Integer,db.ForeignKey('city.id'),nullable=False)
-    def __repr__(self) -> str:
+    def __repr__(self):
         return f"Restaurant:{self.title}"
 
 class City(db.Model):
@@ -122,7 +124,7 @@ class City(db.Model):
     title = db.Column(db.String(20),nullable=False,unique=True)
     image = db.Column(db.String(20),default='image.png')
     restaurant =db.relationship(Restaurant, backref='cities',lazy=True ,cascade="all,delete")
-    def __repr__(self) -> str:
+    def __repr__(self):
         return f"City:{self.title}"
 
 
@@ -132,3 +134,16 @@ class Contact(db.Model):
     message = db.Column(db.Text,nullable=False)
     author = db.Column(db.String(20),nullable=False)
     email = db.Column(db.String(20),nullable=False)
+
+class Tag(db.Model):
+    __tablename__ = "tag"
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(20),nullable=False)
+
+    def __repr__(self):
+        return f"{self.title}"
+
+blogs_tags = db.Table("blogs_tags",
+    db.Column("blog_id",db.Integer,db.ForeignKey('blog.id')),
+    db.Column('tag_id',db.Integer,db.ForeignKey('tag.id')))
+        

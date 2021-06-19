@@ -370,6 +370,11 @@ img {
     }
     .video-area {
         margin-left: 15px;
+        min-width: 480px;
+    }
+
+    .section-5 .col-6 {
+        width: 100%;
     }
     /*footer*/
     .footer-area .row {
@@ -941,7 +946,6 @@ img {
 /*section-6*/
 
 .video-area {
-    min-width: fit-content;
     margin-right: 20px;
 }
 

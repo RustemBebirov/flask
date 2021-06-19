@@ -17,7 +17,7 @@
         <tr>
             <th scope="row">{{city.id}}</th>
             <td>{{city.title}}</td>
-            <td><img src="/static/uploads/{{city.image}}" alt=""></td>
+            <td><img src="/static/uploads/{{city.image}}" alt="" width="50"></td>
             <td><a href="{{url_for('city_edit', id=city.id)}}"><i class="fas fa-edit"></i>Update</a></td>
             <td><a href="{{url_for('city_delete', id=city.id)}}" onclick="return confirm('Are you sure to delete?')"><i class="fas fa-trash-alt"></i>Delete</a></td>
           </tr>
