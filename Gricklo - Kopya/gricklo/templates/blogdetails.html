@@ -112,7 +112,7 @@
                             
 
                             <div class="comment-area">
-                                <h2>{{comment_count}}</h2>
+                                <h2>{{comment_count}} Comments</h2>
                                 {% for comment in comments%}
                                 
                                 
@@ -129,7 +129,7 @@
                                         <h4 class="mr-15"><a href="">{{comment.author}}
                                     </a></h4>
 
-                                        <span>{{comment.comment_posted}}
+                                        <span>{{comment.comment_posted|datetimeformat("%B %d, %Y ")}}
                                     </span>
                                     </div>
                                     <div class="reply-btn">
@@ -212,7 +212,7 @@
                                     </div>
                                     <div class="side-post-text">
                                         <a href="{{url_for('blog')}}">{{post.title}}</a>
-                                        <p>{{post.blog_posted}}</p>
+                                        <p>{{post.blog_posted|datetimeformat("%B %d, %Y ")}}</p>
                                     </div>
 
                                 </div>

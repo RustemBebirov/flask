@@ -1,6 +1,6 @@
 import re
 from werkzeug import datastructures
-from gricklo import app , db , bcrypt
+from gricklo import app , db , bcrypt, env
 import os
 from flask import render_template,redirect,url_for,request,flash
 from werkzeug.utils import secure_filename
@@ -8,6 +8,12 @@ from gricklo.models import *
 from gricklo.forms import RegistrationForm, LoginForm ,UserPostForm
 from gricklo.imageupload import save_picture
 from flask_login import login_user, logout_user,login_required,current_user
+
+
+@app.template_filter("datetimeformat")
+def datetimeformat(value, format='%B'):
+    return value.strftime(format)
+
 
 #Home
 @app.route("/")
